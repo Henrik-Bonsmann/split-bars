@@ -1,13 +1,13 @@
 {
     "id": "split-bars",
     "title": "Split Bars",
-    "description": "Segment your resource bars.",
+    "description": "A simple module that lets you segment resource bars.",
     "authors": [
       {
       "name": "Henrik Bonsmann"
       }
     ],
-    "version": "0.1.0",
+    "version": "1.0.0",
     "compatibility": {
       "minimum": "1",
       "verified": "11"
