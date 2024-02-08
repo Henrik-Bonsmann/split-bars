@@ -26,7 +26,19 @@ function drawBars_Wrapper(wrapped, ...args) {
                     ex = ex.replace(/:/g, "")
                 } 
 
+                if(ex.includes("/"))
+                {
+                    let div = ex.split("/")
+                    ex = Number(div[0])/Number(div[1])
+                }
+
                 let pct = Number(ex);
+
+                if (isNaN(pct)) 
+                {
+                    console.warn("Split Bars | \"" + ex + "\" is not a supported expression!");
+                    continue;
+                }
                 if(pct > Number(attr.max)) continue;
                 if(pct > 1) pct = pct/Number(attr.max);
                 
@@ -74,4 +86,9 @@ Hooks.once('init', function () {
         default: ".5",
       });
 
+});
+
+Hooks.once('ready', () => {
+    if(!game.modules.get('lib-wrapper')?.active && game.user.isGM)
+        ui.notifications.error("Module Split-Bars requires the 'libWrapper' module. Please install and activate it.");
 });
