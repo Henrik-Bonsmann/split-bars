@@ -53,7 +53,7 @@ function drawBars_Wrapper(wrapped, ...args) {
                     }
                     if(pct > Number(attr.max)) continue;
 
-                    if(pct > 1) pct = pct/Number(attr.max);
+                    if(pct >= 1) pct = pct/Number(attr.max);
                     
                     let step = pct;
                     do{
