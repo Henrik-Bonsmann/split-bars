@@ -13,7 +13,7 @@ Specify your segmentation rules in the Token Configuration. Simply separate diff
 ### Fractions:
 Values smaller than 1 will be interpreted as a fraction of the resource. They can be provided in three different ways:
 1. As decimal:
-   > .2 .6 .1
+   > 0.2 0.6 .1
 3. As percentage:
    > 75% 33% 20%
 5. As interger fraction:
