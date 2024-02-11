@@ -60,7 +60,6 @@ function drawBars_Wrapper(wrapped, ...args) {
                         //round to five decimal places to avoid floating point errors
                         pct = Math.round(pct * 100000)/100000;
                         draw_line(this, bar, pct);
-                        console.warn(pct);
                         pct += step;
                     } 
                     while (repeat && (pct < 1))
