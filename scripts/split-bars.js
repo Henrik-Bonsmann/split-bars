@@ -97,6 +97,9 @@ Hooks.once('ready', () => {
 
 Hooks.on('renderTokenConfig', (TokenConfig, html) => {
     const resourceTab = html.find(`[data-tab="resources"]`)[1].children;
+    //skip if this is DefaultTokenSettings
+    if (resourceTab.length < 4) return;
+    
     let rule1 = '';
     let rule2 = '';
     if(hasProperty(TokenConfig.token, 'flags.split-bars.rule1'))
@@ -117,6 +120,11 @@ Hooks.on('renderTokenConfig', (TokenConfig, html) => {
 
 
 Hooks.on('closeTokenConfig', (TokenConfig, html) => {
+
+    //skip if this is DefaultTokenSettings
+    const resourceTab = html.find(`[data-tab="resources"]`)[1].children;
+    if (resourceTab.length < 4) return;
+
     let rule1 = html.find(`[name = "rule1"]`)[0].value;
     let rule2 = html.find(`[name = "rule2"]`)[0].value;
     if(rule1==='')
