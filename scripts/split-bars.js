@@ -57,7 +57,10 @@ function drawBars_Wrapper(wrapped, ...args) {
                     
                     let step = pct;
                     do{
+                        //round to five decimal places to avoid floating point errors
+                        pct = Math.round(pct * 100000)/100000;
                         draw_line(this, bar, pct);
+                        console.warn(pct);
                         pct += step;
                     } 
                     while (repeat && (pct < 1))
@@ -99,7 +102,7 @@ Hooks.on('renderTokenConfig', (TokenConfig, html) => {
     const resourceTab = html.find(`[data-tab="resources"]`)[1].children;
     //skip if this is DefaultTokenSettings
     if (resourceTab.length < 4) return;
-    
+
     let rule1 = '';
     let rule2 = '';
     if(hasProperty(TokenConfig.token, 'flags.split-bars.rule1'))
