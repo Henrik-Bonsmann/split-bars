@@ -1,7 +1,7 @@
 {
     "id": "split-bars",
     "title": "Split Bars",
-    "description": "A simple module that lets you segment resource bars.",
+    "description": "Segment your resource bars with custom rules and keep track at a glance.",
     "authors": [
       {
       "name": "Henrik Bonsmann"
