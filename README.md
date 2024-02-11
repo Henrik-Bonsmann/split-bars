@@ -33,3 +33,7 @@ Will split the bar in thirds, with segmentations at 1/3 and 2/3.
 > 1:
 
 Results in a 'box' for every point of resource.
+
+
+##Requirements
+Requires libWrapper 1.12.13.0+
