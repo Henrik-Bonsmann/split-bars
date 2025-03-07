@@ -17,9 +17,9 @@ function drawBars_Wrapper(wrapped, ...args) {
                 
                 // Get the appropriate rule
                 if(i==0)
-                    statements = this.document.getFlag(MODULE_ID, "rule1").split(" ");
+                    statements = this.document.getFlag(MODULE_ID, "rule1").split(/[; ,]+/);
                 if(i ==1)
-                    statements = this.document.getFlag(MODULE_ID, "rule2").split(" ");
+                    statements = this.document.getFlag(MODULE_ID, "rule2").split(/[; ,]+/);
                 
                 for(ex of statements)
                 {
@@ -27,7 +27,7 @@ function drawBars_Wrapper(wrapped, ...args) {
                     if(ex.includes(":"))
                     {
                         repeat = true;
-                        ex = ex.replace(/:/g, "")
+                        ex = ex.replace(/:/g, "");
                     } 
                    
                     if(ex.includes("%"))
@@ -40,10 +40,18 @@ function drawBars_Wrapper(wrapped, ...args) {
                     if(ex.includes("/"))
                     {
                         let div = ex.split("/")
-                        ex = Number(div[0])/Number(div[1])
-                        ex = ex.toString();
+                        div = Number(div[0])/Number(div[1])
+                        if(div>1 || div <=0 || div.isFinite==false)
+                            console.warn("Split Bars | Unsupported division argument: '"+ex+"'!");
+                        ex = div.toString();
+                        
                     }
-                    
+
+                    if(ex=="")
+                    {
+                        console.warn("Split Bars | Expression is empty or consists only of command characters. \n The ':', '/' and '%' characters only work in conjunction with some numerical values.");
+                        continue;
+                    }
                     let pct = Number(ex);
 
                     if (isNaN(pct)) 
@@ -51,12 +59,18 @@ function drawBars_Wrapper(wrapped, ...args) {
                         console.warn("Split Bars | \"" + ex + "\" is not a supported expression!");
                         continue;
                     }
-                    if(pct > Number(attr.max)) continue;
+                    if(pct > Number(attr.max)|| pct<=0)
+                    { 
+                        console.warn("Split Bars | \"" + ex + "\" is outside permissable values!");
+                        continue;
+                    }
 
-                    if(pct >= 1) pct = pct/Number(attr.max);
+                    if(pct >= 1)
+                        pct = pct/Number(attr.max);
                     
                     let step = pct;
-                    do{
+                    do
+                    {
                         //round to five decimal places to avoid floating point errors
                         pct = Math.round(pct * 100000)/100000;
                         draw_line(this, bar, pct);

@@ -7,10 +7,10 @@
       "name": "Henrik Bonsmann"
       }
     ],
-    "version": "1.0.2",
+    "version": "1.0.3",
     "compatibility": {
       "minimum": "11",
-      "verified": "11"
+      "verified": "12.331"
     },
     "scripts": [
         "scripts/split-bars.js"
@@ -22,7 +22,7 @@
                 "type": "module",
                 "compatibility": {
                     "minimum": "1.12.13.0",
-                    "verified": "1.12.13.0"
+                    "verified": "1.13.2.0"
                 }
             }
         ]
